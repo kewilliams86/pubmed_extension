@@ -3,8 +3,8 @@
 
 To use:
 
-Compress getPhrase.js, manifest.json, and phraseDialog.css into zip file.
+Compress pubmed_acronym_detector to .zip file
 
-Go to "chrome://extensions/", click "Load unpacked" and select folder containing the three files.
+Go to "chrome://extensions/", click "Load unpacked" and select zip folder.
 
 Browse https://pubmed.ncbi.nlm.nih.gov/ and enjoy!
