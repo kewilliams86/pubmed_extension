@@ -1,0 +1,78 @@
+﻿dialog#dialogAcronymExt {
+    position: fixed;
+    background-color: #ffffff;
+    color: #20558a;
+    top: 0%;
+    right: -60%;
+    padding: 1%;
+}
+
+dialog#dialogAcronymExt > .accordion {
+    background-color: #20558a;
+    color: #ffffff;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    outline-offset: unset;
+    font-size: 15px;
+    transition: 0.4s;
+}
+
+dialog#dialogAcronymExt > .active, dialog#dialogAcronymExt > .accordion:hover {
+    background-color: #98bfe7;
+    color: #ffffff;
+}
+
+dialog#dialogAcronymExt > .panel {
+    padding: 0 18px;
+    display: none;
+    background-color: white;
+    overflow: hidden;
+    width: 300px;
+}
+
+dialog#dialogAcronymExt > .panel > .selections {
+    left: 0px !important;
+    position: absolute !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    border: 1px solid blue !important;
+}
+
+dialog#dialogAcronymExt > .panel > label > input[type=checkbox] {
+    appearance: auto;
+    width: auto;
+    height: 1em;
+    position: static;
+    display: inline-block;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+dialog#dialogAcronymExt > .panel > label {
+    display: block;
+    padding-right: 10px;
+    padding-left: 22px;
+    text-indent: -22px;
+    margin-top: auto;
+}
+
+dialog#dialogAcronymExt > .panel > label > span {
+    vertical-align: middle;
+}
+
+button#dialogSearch {
+    float: right; 
+    background-color: #20558a;
+}
+
+button#dialogClose {
+    float: left;
+    background-color: #ffffff;
+    border: 1px solid black;
+    border-color: #20558a;
+    color: #20558a;
+}

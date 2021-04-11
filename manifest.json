@@ -1,0 +1,23 @@
+{
+    "name": "Pubmed Acronym Detector",
+    "description": "Extension to provide phrase for common acronyms on PubMed",
+    "version": "1.0",
+    "permissions": [
+	    "activeTab"
+    ],
+    "browser_action": {
+        "default_title": "PubMed Acronym Detector"
+    },
+
+    "content_scripts": [
+      {
+        "matches": [ "https://pubmed.ncbi.nlm.nih.gov/*" ],
+        "js": [
+          "getPhrase.js"
+        ],
+        "css": [ "phraseDialog.css" ]
+      }
+      ],
+
+    "manifest_version": 2
+}
