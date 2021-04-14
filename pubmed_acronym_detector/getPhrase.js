@@ -63,13 +63,6 @@ function generateDialogBox() {
 
             dialogData += '</ol>';
             dialogData += '<label style="margin-top: 15px; margin-bottom: 10px;">Click acronym and select term</label>';
-            //dialogData += '<br>';
-
-            /*
-            //dialogData += '<input id="containAcronyms" type="checkbox">Retain acronym in search query?<br>';
-            dialogData += '<label><input type="checkbox" id="containAcronyms">Retain acronym in search query?</label>';
-            */
-
             dialogData += '<button id = "dialogClose">Close</button>';
             dialogData += '<button id = "dialogSearch">Search</button></dialog>';
 
@@ -96,10 +89,6 @@ function generateDialogBox() {
                 var phraseSelected = false;
                 let checkboxes = dialog.getElementsByClassName('selections');
 
-                //let replaceAcronym = document.querySelector("[id = 'containAcronyms']"); //not implemented
-
-                var newPhraseString = "";
-
                 for (let c of checkboxes) {
                     if (c.checked == true) {
                         phraseSelected = true;
@@ -107,24 +96,26 @@ function generateDialogBox() {
                         let phrase = c.getAttribute('phrase');
                         let meshID = c.getAttribute('meshid');
 
-                        if (meshID.startsWith('D')) {
-                            newPhraseString += ' ' + phrase + '[MeSH Terms]';
-                        } else if (meshID.startsWith('C')) {
-                            newPhraseString += ' ' + phrase + '[Supplementary Concept]';
+                        if (searchTermList.length == 1) { //single word search no need encapsulation of MeSH term in parentheses
+                            if (meshID.startsWith('D')) {
+                                searchTerm = searchTerm.replace(acronym, phrase + '[MeSH Terms]');
+                            } else if (meshID.startsWith('C')) {
+                                searchTerm = searchTerm.replace(acronym, phrase + '[Supplementary Concept]');
+                            }
+                        } else {
+                            if (meshID.startsWith('D')) {
+                                searchTerm = searchTerm.replace(acronym, '(' + phrase + '[MeSH Terms])');
+                            } else if (meshID.startsWith('C')) {
+                                searchTerm = searchTerm.replace(acronym, '(' + phrase + '[Supplementary Concept])');
+                            }
                         }
 
-                        searchTerm = searchTerm.replace(acronym, '')
-                        /* not implemented
-                        if (!replaceAcronym.checked) {
-                            searchTerm = searchTerm.replace(acronym, '');
-                        }
-                        */
                     }
                 }
 
                 if (phraseSelected) {
                     console.log(searchTerm);
-                    window.location.href = 'https://pubmed.ncbi.nlm.nih.gov/?term=' + searchTerm + newPhraseString;
+                    window.location.href = 'https://pubmed.ncbi.nlm.nih.gov/?term=' + searchTerm;
                 } else {
                     //notFound = 'No phrase selected';
                     //document.getElementById('notFound').innerHTML = notFound.fontcolor('red');
@@ -148,6 +139,7 @@ function generateDialogBox() {
 var results = [];
 var searchTerm = document.getElementById('id_term').value.toUpperCase() // get search term
 var searchTermList = searchTerm.replace(/[/()'"]/g, '').split(' ');
+
 var waiting = searchTermList.length // get number of words to track when all executions of searchFunction() complete
 
 //console.log(searchTermList);
